@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # -----------------------------------------------
-#  BrainBurst Trivia – one-click launcher
+#  News Trivia Aggregator – one-click launcher
 #  Just double-click this or run: bash start.sh
 # -----------------------------------------------
 set -e
@@ -9,8 +9,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 echo ""
-echo "🧠  BrainBurst Trivia"
-echo "====================="
+echo "📡  News Trivia Aggregator"
+echo "=========================="
 echo ""
 
 # check python

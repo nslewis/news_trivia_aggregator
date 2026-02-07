@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 
 # ---------- page config ----------
-st.set_page_config(page_title="Diplomacy – BrainBurst", page_icon="🌍", layout="centered")
+st.set_page_config(page_title="Diplomacy – News Trivia", page_icon="🌍", layout="centered")
 
 # ---------- CSS (matches main app) ----------
 st.markdown("""
@@ -124,7 +124,7 @@ def load_questions():
     # Try local copy first, then /tmp fallback
     paths = [
         Path(__file__).parent.parent / "diplomacy_questions.json",
-        Path("/tmp/brainburst_all_questions.json"),
+        Path("/tmp/news_trivia_all_questions.json"),
     ]
     for p in paths:
         if p.exists():

@@ -1,7 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
-    page_title="BrainBurst Trivia",
+    page_title="News Trivia Aggregator",
     page_icon="🧠",
     layout="centered",
     initial_sidebar_state="expanded",
@@ -87,8 +87,8 @@ if "best_streak" not in st.session_state:
     st.session_state.best_streak = 0
 
 # ---------- hero ----------
-st.markdown('<p class="hero-title">🧠 BrainBurst</p>', unsafe_allow_html=True)
-st.markdown('<p class="hero-sub">A trivia game that keeps your neurons firing.</p>', unsafe_allow_html=True)
+st.markdown('<p class="hero-title">News Trivia Aggregator</p>', unsafe_allow_html=True)
+st.markdown('<p class="hero-sub">Test what you know against what actually happened.</p>', unsafe_allow_html=True)
 
 # ---------- lifetime stats ----------
 played = st.session_state.total_played
@@ -113,21 +113,43 @@ st.markdown("""
     Head to <b>▶️ Play</b> in the sidebar to start!</p>
 </div>
 <div class="card">
-    <h3>🌍 Diplomatic Trivia</h3>
-    <p>539+ verified questions on global diplomacy — foreign policy, UN votes, NATO, BRICS,
-    and how nations spin the same events into different truths.
-    Pick <b>Normal</b> or <b>Hard</b> mode in the sidebar under <b>🌍 Diplomacy</b>.</p>
+    <h3>🌍 Diplomacy Quiz</h3>
+    <p>539+ questions on global diplomacy — UN votes, NATO, BRICS, sanctions, espionage,
+    and the ways different institutions describe the same events in different words.
+    Pick <b>Normal</b> or <b>Hard</b> mode under <b>🌍 Diplomacy</b>.</p>
 </div>
 <div class="card">
-    <h3>📡 Powered by Open Trivia DB + Research</h3>
-    <p>General trivia is fetched live from the internet. Diplomatic questions are
-    web-researched and verified from real sources (UN records, NATO, State Dept, Reuters).</p>
+    <h3>📡 Sources & Method</h3>
+    <p>General trivia is fetched live from Open Trivia DB. Diplomatic questions are drawn
+    from UN records, NATO communiqués, State Department cables, Reuters, BBC, Al Jazeera,
+    and other primary sources — then cross-referenced for factual accuracy.</p>
 </div>
 <div class="card">
     <h3>📊 Track Your Progress</h3>
-    <p>Your stats update in real-time across both game modes. Try to beat your best streak!</p>
+    <p>Accuracy, streaks, and category breakdowns update in real-time across both modes.</p>
+</div>
+""", unsafe_allow_html=True)
+
+# ---------- philosophical note ----------
+st.markdown("""
+<div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px; padding: 1.8rem; margin-top: 1rem;">
+    <p style="color: #b8b8d0; font-size: 0.95rem; line-height: 1.75; margin: 0;">
+        The premise of this project is simple: events happen, and then institutions describe them.
+        Governments, international bodies, news agencies, and NGOs all report on the same
+        incident — yet the language, emphasis, and framing can differ so widely that you'd
+        think they were talking about different realities. Sometimes the most unlikely sources
+        agree on the raw facts while those you'd expect to align diverge completely.
+        <br><br>
+        This is an attempt to get closer to what actually occurred by stripping away the
+        editorializing and asking: <i>what do the primary documents say? What did the
+        resolution actually state? Who voted which way, and what did they say on the record?</i>
+        The hope is that trivia — of all things — can be a method for cutting through noise.
+        Not by telling you what to think, but by testing whether you know what happened
+        before the interpretations took over.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Built with ❤️ and Streamlit · Questions from [opentdb.com](https://opentdb.com)")
+st.sidebar.caption("Questions from [opentdb.com](https://opentdb.com) & primary diplomatic sources")

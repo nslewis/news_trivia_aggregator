@@ -5,7 +5,7 @@ import random
 import time
 
 # ---------- page config ----------
-st.set_page_config(page_title="Play – BrainBurst", page_icon="▶️", layout="centered")
+st.set_page_config(page_title="Play – News Trivia", page_icon="▶️", layout="centered")
 
 # ---------- CSS ----------
 st.markdown("""

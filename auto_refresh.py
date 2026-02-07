@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-BrainBurst Auto-Refresh Pipeline
-=================================
+News Trivia Aggregator — Auto-Refresh Pipeline
+=================================================
 Fetches diplomatic news via RSS, generates trivia questions with Claude API,
 validates, deduplicates, and appends to diplomacy_questions.json.
 
@@ -425,7 +425,7 @@ def approve_pending() -> int:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="BrainBurst Auto-Refresh: generate diplomacy trivia from current news",
+        description="News Trivia Aggregator: generate diplomacy trivia from current news",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 examples:
@@ -478,7 +478,7 @@ examples:
         return
 
     # --- Generate mode ---
-    print(f"\n🧠 BrainBurst Auto-Refresh Pipeline")
+    print(f"\n📡 News Trivia Aggregator — Auto-Refresh")
     print(f"{'=' * 40}")
 
     # Step 1: Fetch news
