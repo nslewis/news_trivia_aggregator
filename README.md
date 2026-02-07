@@ -1,56 +1,52 @@
-# BrainBurst Trivia
+# News Trivia Aggregator
 
-A local trivia quiz game built with Streamlit — featuring 539+ hand-crafted diplomacy questions and an AI-powered auto-refresh pipeline.
+A Streamlit trivia app that turns real-world diplomatic news into quiz questions — with an AI pipeline that generates fresh questions from current events.
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/nslewis/brainburst.git
-cd brainburst
+git clone https://github.com/nslewis/news_trivia_aggregator.git
+cd news_trivia_aggregator
 bash start.sh
 ```
 
-`start.sh` handles everything: creates a virtual environment, installs dependencies, and launches the app. Your browser opens to `http://localhost:8501`.
+`start.sh` creates a virtual environment, installs dependencies, and launches the app at `http://localhost:8501`.
 
-## Features
+## What's Inside
 
-- **539+ Diplomacy Questions** — 15 categories covering UN votes, NATO, BRICS, sanctions, espionage, cyber diplomacy, and more
-- **General Trivia** — live questions from [Open Trivia Database](https://opentdb.com) across 12+ categories
-- **Two Difficulty Modes** — Normal (easy + medium) or Hard mode for diplomacy
-- **No-Repeat Rounds** — tracks seen questions so you don't get repeats until you've exhausted the pool
-- **Score Tracking** — accuracy, streak counter, category breakdowns, round recaps
-- **Perception Lens** — each diplomacy category includes context on how different nations frame events
+**The App** — a multi-page Streamlit game with two modes:
+- **General Trivia** — live questions from [Open Trivia Database](https://opentdb.com), pick category/difficulty/count
+- **Diplomacy Quiz** — 539+ curated questions across 15 categories (UN votes, NATO, sanctions, espionage, cyber diplomacy, etc.), with Normal and Hard modes
 
-## Auto-Refresh Pipeline
-
-Generate new diplomacy questions from current news using Claude API:
+**The Pipeline** (`auto_refresh.py`) — a CLI tool that:
+1. Pulls headlines from BBC, Al Jazeera, The Guardian, Reuters, and AP via RSS
+2. Sends news summaries to Claude API to generate trivia questions
+3. Validates schema and deduplicates against the existing question bank
+4. Appends new questions with sequential IDs
 
 ```bash
-# Set your API key
 export ANTHROPIC_API_KEY=your-key-here
 
-# Generate 20 new questions from current news
-python auto_refresh.py --count 20
-
-# Preview without writing (dry run)
-python auto_refresh.py --count 10 --dry-run
-
-# Stage for manual review first
-python auto_refresh.py --count 20 --review
-
-# Approve reviewed questions
-python auto_refresh.py --approve
+python auto_refresh.py --count 20             # generate 20 new questions
+python auto_refresh.py --count 10 --dry-run   # preview without writing
+python auto_refresh.py --count 20 --review    # stage for manual review
+python auto_refresh.py --approve              # merge reviewed questions
 ```
 
-The pipeline:
-1. Fetches headlines from BBC, Al Jazeera, The Guardian, Reuters, and AP
-2. Sends news summaries to Claude to generate trivia questions
-3. Validates schema (correct fields, 3 wrong answers, valid difficulty)
-4. Deduplicates against existing questions (fuzzy matching)
-5. Appends to `diplomacy_questions.json` with sequential IDs
+## Project Structure
+
+```
+🏠_Home.py                  # dashboard + stats
+pages/1_▶️_Play.py           # general trivia (OpenTDB)
+pages/2_🌍_Diplomacy.py      # diplomacy quiz
+diplomacy_questions.json     # 539+ questions (the data)
+auto_refresh.py              # news → trivia pipeline
+start.sh                     # one-click launcher
+requirements.txt             # dependencies
+```
 
 ## Requirements
 
 - Python 3.8+
 - Internet connection (for general trivia + RSS feeds)
-- `ANTHROPIC_API_KEY` environment variable (only for auto-refresh pipeline)
+- `ANTHROPIC_API_KEY` env var (only needed for the auto-refresh pipeline)
